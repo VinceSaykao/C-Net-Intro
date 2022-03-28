@@ -10,10 +10,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 
-import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
+
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -23,17 +21,27 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-import PersonIcon from '@mui/icons-material/Person';
+
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
+
+
 function LoginForm() {
+
+  // local states that takes in login inputs
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  // store for errors
   const errors = useSelector(store => store.errors);
+
+
   const dispatch = useDispatch();
   const history = useHistory();
 
+
+  // function runs when user types something in and dispatches it, as a whole, form. 
   const login = (event) => {
     event.preventDefault();
 
@@ -51,7 +59,7 @@ function LoginForm() {
   }; // end login
 
 
-
+  // MUI for password 
   const [values, setValues] = React.useState({
     amount: '',
     password: '',
@@ -60,10 +68,12 @@ function LoginForm() {
     showPassword: false,
   });
 
+  // MUI for password
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
+  // when user clicks on eye, it shows password
   const handleClickShowPassword = () => {
     setValues({
       ...values,
@@ -71,6 +81,7 @@ function LoginForm() {
     });
   };
 
+  // MUI password
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -102,7 +113,7 @@ function LoginForm() {
 
           <TextField
               autoComplete="off"
-            label="Outlined"
+            label="Username"
             variant="outlined"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
@@ -181,9 +192,7 @@ function LoginForm() {
         <span className='create-account'>Create Account</span>
       </button>
 
-      {/* <button
-      id='trouble'
-      >Can't Log In</button> */}
+
     </form>
   );
 }

@@ -129,7 +129,9 @@ export default function Feedback() {
                     <Chip label="MUI" variant="outlined" id='chips' />
                     <Chip label="SASS" variant="outlined" id='chips' />
 
+
                 </Stack>
+    
                 <br></br>
             </div>
             <h3>THANK YOU</h3>

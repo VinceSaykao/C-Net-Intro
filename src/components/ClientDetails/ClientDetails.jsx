@@ -35,6 +35,8 @@ import './ClientDetails.scss';
 
 
 function TabPanel(props) {
+
+    // MUI for tabs
     const { children, value, index, ...other } = props;
 
     return (
@@ -54,12 +56,14 @@ function TabPanel(props) {
     );
 }
 
+// MUI tabs
 TabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.number.isRequired,
     value: PropTypes.number.isRequired,
 };
 
+// MUI tabs
 function a11yProps(index) {
     return {
         id: `simple-tab-${index}`,
@@ -67,29 +71,41 @@ function a11yProps(index) {
     };
 }
 
+// dispatches needed to run reducers and information
 export default function ClientDetails() {
     const dispatch = useDispatch();
     useEffect(() => {
+        // fetches client 
         dispatch({ type: 'FETCH_CLIENT' })
+        // fetches client information and sends a payload client's name for router
         dispatch({ type: 'FETCH_CLIENT_SHEET', payload: client })
+        // fetches client timesheet information and sends payload client's name for router
         dispatch({ type: 'FETCH_CLIENT_TIMESHEET', payload: client })
     }, [location]) // end of useEffect
 
+    // useparams used to recieve the client's name
     const { client } = useParams();
+
     const history = useHistory();
+
+    // recieving client's information
     const clientInfoReducer = useSelector(store => store.clientInfoReducer);
+
+    // recieving client's timesheet
     const timesheetClientReducer = useSelector(store => store.timesheetClientReducer);
 
 
 
-
+    // MUI tabs
     const [value, setValue] = React.useState(0);
 
+
+    // MUI tabs
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-
+    // MUI theme for table cells 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
             backgroundColor: '#a197ff',
@@ -100,14 +116,7 @@ export default function ClientDetails() {
         },
     }));
 
-    const ColorButton = styled(Button)(({ theme }) => ({
-        color: '#ffffff',
-        backgroundColor: '#a18de1',
-        '&:hover': {
-            backgroundColor: '#bdb4d8',
-        },
-    }));
-
+    // MUI theme for table rows
     const StyledTableRow = styled(TableRow)(({ theme }) => ({
         '&:nth-of-type(odd)': {
             backgroundColor: theme.palette.action.hover,
@@ -118,6 +127,8 @@ export default function ClientDetails() {
         },
     }));
 
+
+    // when user clicks row, it will send them to that specific client timesheet info
     const handleClicked = (timesheet) => {
         console.log(timesheet.id)
         dispatch({ type: 'FETCH_SPECIFIC_CLIENT', payload: timesheet.id });
