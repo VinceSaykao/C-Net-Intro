@@ -1,0 +1,15 @@
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/bin/Debug/net6.0/MyApp
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/bin/Debug/net6.0/MyApp.deps.json
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/bin/Debug/net6.0/MyApp.runtimeconfig.json
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/bin/Debug/net6.0/MyApp.dll
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/bin/Debug/net6.0/MyApp.pdb
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/obj/Debug/net6.0/MyApp.csproj.AssemblyReference.cache
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/obj/Debug/net6.0/MyApp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/obj/Debug/net6.0/MyApp.AssemblyInfoInputs.cache
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/obj/Debug/net6.0/MyApp.AssemblyInfo.cs
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/obj/Debug/net6.0/MyApp.csproj.CoreCompileInputs.cache
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/obj/Debug/net6.0/MyApp.dll
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/obj/Debug/net6.0/refint/MyApp.dll
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/obj/Debug/net6.0/MyApp.pdb
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/obj/Debug/net6.0/MyApp.genruntimeconfig.cache
+/Users/vincesaykao/prime/.Folders/prime-solo-project/MyApp/obj/Debug/net6.0/ref/MyApp.dll
