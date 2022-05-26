@@ -6,7 +6,7 @@ const router = express.Router();
  * GET route template
  */
 
-// this will GET the timesheet from the database
+// this will GET the general timesheet from the database
 router.get('/', (req, res) => {
     // GET route code here
 
@@ -52,7 +52,8 @@ router.get('/clienttimesheet/:id', (req, res) => {
 
     if (req.isAuthenticated()) {
         pool
-            .query(`select timesheet.id, client_id, client_name from timesheet join clients on clients.id = timesheet.client_id where client_name = $1 limit 1;`, [id])
+            .query(`select timesheet.id, client_id, client_name from timesheet join clients on clients.id = 
+            timesheet.client_id where client_name = $1 limit 1;`, [id])
             .then((results) => res.send(results.rows))
             .catch((error) => {
                 console.log('Error making SELECT for get timesheet:', error);
@@ -71,7 +72,7 @@ router.post('/', (req, res) => {
     ($1,$2,$3,$4,$5,$6,$7,$8);
     `;
     console.log('req.user.id is', req.user.id)
-    //     let queryInserts = [req.user.id,1,'joe',3,4,323,'fun times'];
+
     let queryInserts = [req.user.id, req.body.client_id, req.body.date, req.body.client_name, req.body.in, req.body.out, req.body.mileage, req.body.notes];
     if (req.isAuthenticated()) {
         pool
@@ -87,27 +88,6 @@ router.post('/', (req, res) => {
     }
 });
 
-// update for general client
-router.put('/:id', (req, res) => {
-    console.log('timesheet form put route', req.body);
-    const queryText = `update timesheet set 
-    "date" = $1,
-    "client_name" = $2,
-    "in" = $3,
-    "out" = $4,
-    "mileage" = $5,
-    "notes" = $6
-    where id = $7;`;
-
-    const queryValues = [req.body.date, req.body.client_name, req.body.in, req.body.out, req.body.mileage, req.body.notes, req.params.id];
-
-    pool.query(queryText, queryValues).then(() => {
-        res.sendStatus(200)
-    }).catch((error) => {
-        console.log('Error updating item', error);
-        res.sendStatus(500);
-    })
-});
 
 
 // update for specific client
@@ -122,9 +102,9 @@ router.put('/clienttimesheet/:id', (req, res) => {
     "mileage" = $6,
     "notes" = $7
     where id = $8;`;
-
+    
     const queryValues = [req.body.date, req.body.client_name, req.body.client_id, req.body.in, req.body.out, req.body.mileage, req.body.notes, req.params.id];
-
+    
     pool.query(queryText, queryValues).then(() => {
         res.sendStatus(200)
     }).catch((error) => {
@@ -133,29 +113,6 @@ router.put('/clienttimesheet/:id', (req, res) => {
     })
 });
 
-/**
- * Delete an item if it's something the logged in user added
- */
-router.delete("/:id", (req, res) => {
-    let queryText = `DELETE FROM timesheet WHERE id = $1;`;
-    let queryInsert = req.params.id;
-    console.log('this is params.id', req.params.id);
-
-    if (req.isAuthenticated()) {
-        pool
-            .query(queryText, [queryInsert])
-            .then((results) => {
-                console.log("Success on delete", results);
-                res.sendStatus(200);
-            })
-            .catch((err) => {
-                console.log("Error on delete,", err);
-                res.sendStatus(500);
-            });
-    } else {
-        res.sendStatus(403);
-    }
-});
 
 
 // delete on client page
@@ -163,21 +120,70 @@ router.delete("/clienttimesheet/:id", (req, res) => {
     let queryText = `DELETE FROM timesheet WHERE id = $1;`;
     let queryInsert = req.params.id;
     console.log('this is params.id', req.params.id);
-
+    
     if (req.isAuthenticated()) {
         pool
-            .query(queryText, [queryInsert])
-            .then((results) => {
-                console.log("Success on delete", results);
-                res.sendStatus(200);
-            })
-            .catch((err) => {
-                console.log("Error on delete,", err);
-                res.sendStatus(500);
-            });
+        .query(queryText, [queryInsert])
+        .then((results) => {
+            console.log("Success on delete", results);
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log("Error on delete,", err);
+            res.sendStatus(500);
+        });
     } else {
         res.sendStatus(403);
     }
 });
+
+
+
+
+// update for general client
+// router.put('/:id', (req, res) => {
+//     console.log('timesheet form put route', req.body);
+//     const queryText = `update timesheet set 
+//     "date" = $1,
+//     "client_name" = $2,
+//     "in" = $3,
+//     "out" = $4,
+//     "mileage" = $5,
+//     "notes" = $6
+//     where id = $7;`;
+
+//     const queryValues = [req.body.date, req.body.client_name, req.body.in, req.body.out, req.body.mileage, req.body.notes, req.params.id];
+
+//     pool.query(queryText, queryValues).then(() => {
+//         res.sendStatus(200)
+//     }).catch((error) => {
+//         console.log('Error updating item', error);
+//         res.sendStatus(500);
+//     })
+// });
+
+/**
+ * Delete an item if it's something the logged in user added
+ */
+// router.delete("/:id", (req, res) => {
+//     let queryText = `DELETE FROM timesheet WHERE id = $1;`;
+//     let queryInsert = req.params.id;
+//     console.log('this is params.id', req.params.id);
+
+//     if (req.isAuthenticated()) {
+//         pool
+//             .query(queryText, [queryInsert])
+//             .then((results) => {
+//                 console.log("Success on delete", results);
+//                 res.sendStatus(200);
+//             })
+//             .catch((err) => {
+//                 console.log("Error on delete,", err);
+//                 res.sendStatus(500);
+//             });
+//     } else {
+//         res.sendStatus(403);
+//     }
+// });
 
 module.exports = router;

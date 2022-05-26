@@ -33,7 +33,7 @@ export default function ClientDetailsItems({ timesheet }) {
 
 
 
-
+    // when edit is pressed it will bring you to edit form page 
     const ButtonEdit = styled(Button)({
         boxShadow: 'none',
         textTransform: 'none',

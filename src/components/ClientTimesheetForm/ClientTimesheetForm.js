@@ -30,6 +30,8 @@ export default function ClientTimesheetForm() {
 
     const history = useHistory();
     const dispatch = useDispatch();
+
+    // useParams, passes specific clients' name
     const { client } = useParams();
 
     useEffect(() => {
@@ -38,6 +40,7 @@ export default function ClientTimesheetForm() {
     }, [location]) // end of useEffect
 
 
+    // Hook useStates for input fields
     const [clientId, setClientId] = useState(timesheetClientTimesheetReducer[0].client_id);
     const [clientName, setClientName] = useState(client);
     const [mileage, setMileage] = useState('');
@@ -50,6 +53,7 @@ export default function ClientTimesheetForm() {
     // when submit is pressed, will post all input values
     function handleSubmit() {
 
+        // sweet alerts 
         if (clientName != ('') && date != ('') && mileage != ('') && notes != ('') && timeIn != ('') && timeOut != ('')) {
             return Swal.fire({
                 title: 'Add Timesheet?',
@@ -63,8 +67,7 @@ export default function ClientTimesheetForm() {
                 if (result.isConfirmed) {
                     dispatch({ type: 'ADD_TIMESHEET', payload: { date: date, client_name: clientName, client_id: clientId, in: timeIn, out: timeOut, mileage: mileage, notes: notes } })
                     // clears input value after submit is pressed
-                    // history.push('/timesheet');
-                    history.goBack()
+                    history.goBack();
 
                 }
             })
@@ -86,7 +89,6 @@ export default function ClientTimesheetForm() {
     };
 
 
-    console.log('THIS Is FIRE', timesheetClientTimesheetReducer);
     return (
         <> <Helmet>
             <style>{`body { height: 100%; background-color: #544e88; 

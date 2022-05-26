@@ -11,11 +11,9 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 
-import TimesheetItem from '../TimesheetItem/TimesheetItem';
 import ClientDetailsItem from '../ClientDetailsItem/ClientDetailsItem';
 import ClientDetailsAddButton from '../ClientDetailsAddButton/ClientDetailsAddButton';
 import ClientDetailsItemDelete from '../ClientDetailsItemDelete/ClientDetailsItemDelete';
-
 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -25,9 +23,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import CircularProgress from '@mui/material/CircularProgress';
-
 
 import Footer from '../Footer/Footer';
 
@@ -74,6 +69,8 @@ function a11yProps(index) {
 // dispatches needed to run reducers and information
 export default function ClientDetails() {
     const dispatch = useDispatch();
+
+    
     useEffect(() => {
         // fetches client 
         dispatch({ type: 'FETCH_CLIENT' })
@@ -173,7 +170,7 @@ export default function ClientDetails() {
 
                                     </Tabs>
 
-                                </Box>
+                            </Box>
 
 
 

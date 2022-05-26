@@ -50,20 +50,19 @@
 
 
 
-// namespace firstCondition
-// {
-//     class Program
-//     {
-//         static void Main(string[] args)
-//         {
-//             if (20 > 18)
-//             {
-//                 Console.WriteLine("20 is greater than 18");
-//             }
-//         }
-//     }
-// }
-
+namespace firstCondition
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            if (20 > 18)
+            {
+                Console.WriteLine("20 is greater than 18");
+            }
+        }
+    }
+}
 
 // conditional you input and it will compilegit  it
 namespace ticketSales
@@ -94,3 +93,16 @@ namespace ticketSales
 }
 
 
+// public class Bunnies
+// {
+//     // method
+//     public static void BunnyLove()
+//     {
+//         Console.WriteLine("I Love Bunnies");
+//     }
+//     // method
+//     public string HiBunnies(string words)
+//     {
+//         return words;
+//     }
+// }

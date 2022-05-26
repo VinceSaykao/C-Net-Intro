@@ -1,20 +1,9 @@
 import './Timesheet.scss';
-import TimesheetItem from '../TimesheetItem/TimesheetItem.js';
-
 
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
-
-import { DataGrid } from '@mui/x-data-grid';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
-
-
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
 
 
 import Footer from '../Footer/Footer';
@@ -22,13 +11,10 @@ import Footer from '../Footer/Footer';
 import { Helmet } from 'react-helmet';
 
 
+import { DataGrid } from '@mui/x-data-grid';
+import Box from '@mui/material/Box';
 
 import { useTheme } from '@mui/material/styles';
-import MobileStepper from '@mui/material/MobileStepper';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 
@@ -68,6 +54,8 @@ export default function Timesheet() {
 
     const location = useLocation();
 
+
+    // useEffect to dispatch FETCH_TIMESHEET GET the general timesheet
     useEffect(() => {
         dispatch({ type: 'FETCH_TIMESHEET' })
     }, [location]) // end of useEffect
@@ -76,6 +64,8 @@ export default function Timesheet() {
     const history = useHistory();
 
     const dispatch = useDispatch();
+
+    // store for general timesheets of clients
     const timesheetReducer = useSelector(store => store.timesheetReducer);
 
 
@@ -130,6 +120,7 @@ export default function Timesheet() {
 
 
 
+    // used for slide show
 
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
@@ -156,6 +147,7 @@ export default function Timesheet() {
 
     return (
         <div>
+            
             <Helmet>
                 <style>{`body { background-image: url("https://images.unsplash.com/photo-1584463623578-37726932ba2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8aG9tZSUyMGhlYWx0aGNhcmV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"); 
                 background-repeat: no-repeat; background-size: cover; background-position: -80px 120px; margin-top: -35px;}`}
@@ -196,11 +188,6 @@ export default function Timesheet() {
 
 
 
-{/* 
-            <div id='timesheet-header-div'>
-
-            </div> */}
-
             <div id="timesheet-div">
                 <div style={{ height: '72%', width: '100%' }}>
 
@@ -217,29 +204,7 @@ export default function Timesheet() {
                     />
 
 
-
-                    {/* <div className='tablestuff'>
-                        <h3 className='history'>History</h3>
-                        <table>
-                            <tr>
-                                {timesheetReducer.map((timesheetItem, i) => {
-                                    return (
-                                        <TimesheetItem
-                                            key={i}
-                                            timesheetItem={timesheetItem} />
-                                    );
-                                })}
-                            </tr>
-                        </table>
-                    </div> */}
-
-
                 </div>
-                {/* <Box sx={{ display: 'flex' }}>
-                    <CircularProgress
-                        color="success"
-                    />
-                </Box> */}
             </div >
 
 
@@ -249,5 +214,4 @@ export default function Timesheet() {
 
 }; // end of Timesheet
 
-// data table 
 

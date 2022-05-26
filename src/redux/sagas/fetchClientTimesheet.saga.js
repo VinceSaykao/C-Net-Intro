@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
-
-
 function* fetchClientTimesheet(action) {
     try {
         console.log('inside clientimesheet', action.payload)
@@ -11,9 +9,6 @@ function* fetchClientTimesheet(action) {
     } catch (error) {
         console.log('error fetching timesheet', error);
     }
-
-
-
 
 }; // end of fetchTimesheet
 
